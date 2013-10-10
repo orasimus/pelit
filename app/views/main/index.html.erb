@@ -1,0 +1,65 @@
+<p>
+  <% form_tag({:action => "index"}, :method => :get) do %>
+    <span style="font-weight: bold;">Games by country:</span> <%= select_tag :country, options_for_select(@countries, params[:country]) %> <%= submit_tag "Go" %>
+  <% end %>
+</p>
+
+<table>
+	<tr class="list-titles">
+		<td>
+      Name
+      <%= sort_link("name", "desc") %>
+      <%= sort_link("name", "asc") %>
+    </td>
+		<td>Tags</td>
+		<td>
+      Developer
+      <%= sort_link("developer", "desc") %>
+      <%= sort_link("developer", "asc") %>
+    </td>
+		<td>
+      Year
+      <%= sort_link("release_year", "desc") %>
+      <%= sort_link("release_year", "asc") %>
+    </td>
+		<td>Platform</td>
+		<td>Notes</td>
+	</tr>
+	<% @games.each do |game| %>
+	<tr class="<%= cycle('game-odd', 'game-even') %>">
+	
+	<td><%=h game.name %></td>
+	
+	<td>
+    
+		<% game.tags.each do |tag| %>
+			<%= link_to image_tag("tag/" + tag.image, :title => tag.name), :tag => tag.id, :controller => "main" %>
+		<% end %>
+	</td>
+
+	<td>
+    <% if game.developer %>
+      <%= link_to game.developer.name, :developer => game.developer.id, :controller => "main" %>
+    <% end %>
+	</td>
+	
+	<td><%= link_to game.release_year, :year => game.release_year, :controller => "main" %></td>
+
+	<td>
+    <% platforms = game.platforms.map {|platform| link_to platform.name, :platform => platform.id, :controller => "main"} %>
+    <%= platforms.join(", ") %>
+	</td>
+	
+	<td>
+    <% notes = game.notes.map {|note| note.content } %>
+    <%= notes.join(", ") %>
+	</td>
+  
+  <% if session[:user_id] %>
+    <td><%= link_to 'edit', edit_game_path(game), :class => "green-link" %></td>
+    <td><%= link_to 'delete', game, { :method => :delete, :class => "green-link" } %></td>
+	<% end %>
+  
+	</tr>
+	<% end %>
+</table>

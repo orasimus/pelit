@@ -1,0 +1,19 @@
+<%= render("shared/edit_bar") %>
+<h2>Platforms</h2>
+
+<p>
+<%= link_to "new platform", new_platform_path, :class => "green-link" %>
+</p>
+
+<table>
+  <tr class="list-titles">
+    <td>Name</td>
+  </tr>
+  <% @platforms.each do |platform| %>
+    <tr>
+      <td><%= platform.name %></td>
+      <td><%= link_to 'edit', edit_platform_path(platform), :class => "green-link" %></td>
+      <td><%= link_to 'delete', platform, { :method => :delete, :class => "green-link" } %></td>
+    </tr>
+  <% end %>
+</table>

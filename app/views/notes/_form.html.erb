@@ -1,0 +1,23 @@
+<% form_for @note do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :game_id %><br />
+    <%= collection_select :note, :game_id, @games, :id, :name, { :prompt => true } %>
+  </p>
+
+  <p>
+    <%= f.label :info %><br />
+    <%= f.text_field :info %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_field :content %>
+  </p>
+
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>
+
+<%= link_to "Notes", notes_path, :class => "green-link" %>

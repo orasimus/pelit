@@ -1,0 +1,47 @@
+<% form_for @game do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    Tags<br />
+    <% @tags.each do |tag| %>
+      <%= check_box_tag "game[tag_ids][]", tag.id, @game.tags.include?(tag) %>
+      <%= image_tag("tag/" + tag.image, :title => tag.name) %>
+    <% end %>
+  </p>
+  
+  <p>
+    <%= f.label :release_year %><br />
+    <%= f.text_field :release_year %>
+  </p>
+  <p>
+    <%= f.label :developer_id %><br />
+    <%= collection_select :game, :developer_id, @developers, :id, :name, { :prompt => true } %>
+  </p>
+
+  <p>
+    Platforms<br />
+    <% @platforms.each do |platform| %>
+      <%= check_box_tag "game[platform_ids][]", platform.id, @game.platforms.include?(platform) %>
+      <%=h platform.name %>
+    <% end %>
+  </p>
+
+  <% if (!@game.notes.empty?) %>
+  <h3>Notes <span style="font-size: 9px;">(edit notes through 'edit others')</span></h3>
+
+  <p>
+    <% @game.notes.each do |note| %>
+      <%= note.info %>: <%= note.content %><br />
+    <% end %>
+  </p>
+  <% end %>
+
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

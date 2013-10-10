@@ -1,0 +1,38 @@
+body {
+	font-family: "Trebuchet MS";
+	font-size: 14px;
+}
+
+a:active, :visited, :link {
+	color: #000000;
+  text-decoration: none;
+}
+
+td {
+  padding-right: 10px;
+}
+
+#banner {
+  width: 800px;
+}
+
+#notice {
+  margin-top: 10px;
+  color: red;
+}
+
+.right {
+  float: right;
+}
+
+.list-titles {
+  font-weight: bold;
+}
+
+.game-even {
+  background-color: #d0f0c0;
+}
+
+.green-link {
+  color: green;
+}

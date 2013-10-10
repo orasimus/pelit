@@ -1,0 +1,20 @@
+<%= render("shared/edit_bar") %>
+<h2>Notes</h2>
+
+<p>
+<%= link_to "new note", new_note_path, :class => "green-link" %>
+</p>
+
+<table>
+  <tr class="list-titles">
+    <td>Info</td><td>Content</td>
+  </tr>
+  <% @notes.each do |note| %>
+    <tr>
+      <td><%= h note.info %></td>
+      <td><%= h note.content %></td>
+      <td><%= link_to 'edit', edit_note_path(note), :class => "green-link" %></td>
+      <td><%= link_to 'delete', note, { :method => :delete, :class => "green-link" } %></td>
+    </tr>
+  <% end %>
+</table>

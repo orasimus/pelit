@@ -1,0 +1,20 @@
+<%= render("shared/edit_bar") %>
+<h2>Developers</h2>
+
+<p>
+<%= link_to "new developer", new_developer_path, :class => "green-link" %>
+</p>
+
+<table>
+  <tr class="list-titles">
+    <td>Name</td><td>Country</td>
+  </tr>
+  <% @developers.each do |developer| %>
+    <tr>
+      <td><%= developer.name %></td>
+      <td><%= developer.country %></td>
+      <td><%= link_to 'edit', edit_developer_path(developer), :class => "green-link" %></td>
+      <td><%= link_to 'delete', developer, { :method => :delete, :class => "green-link" } %></td>
+    </tr>
+  <% end %>
+</table>

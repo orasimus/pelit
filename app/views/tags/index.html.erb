@@ -1,0 +1,20 @@
+<%= render("shared/edit_bar") %>
+<h2>Tags</h2>
+
+<p>
+<%= link_to "new tag", new_tag_path, :class => "green-link" %>
+</p>
+
+<table>
+  <tr class="list-titles">
+    <td>Name</td><td>Image</td>
+  </tr>
+  <% @tags.each do |tag| %>
+    <tr>
+      <td><%= tag.name %></td>
+      <td><%= image_tag("tag/" + tag.image, :title => tag.name) %></td>
+      <td><%= link_to 'edit', edit_tag_path(tag), :class => "green-link" %></td>
+      <td><%= link_to 'delete', tag, { :method => :delete, :class => "green-link" } %></td>
+    </tr>
+  <% end %>
+</table>

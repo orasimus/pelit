@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Pelit</title>
+  <%= stylesheet_link_tag "main", :media => "all" %>
+</head>
+<body>
+  <div id="banner">
+    <p class="right">
+    <% if session[:user_id] %>
+      <%= link_to "new game", new_game_path, :class => "green-link" %> | 
+      <%= link_to "edit others", { :controller => "edit" }, :class => "green-link" %> |
+      <%= link_to "logout", { :controller => "admin", :action =>"logout" }, :class => "green-link" %>
+    <% else %>
+      <%= link_to "login", { :controller => "admin", :action =>"login" }, :class => "green-link" %>
+    <% end %>
+    </p>
+    <h1><%= link_to "Pelit", :controller => "main" %></h1>
+  </div>
+  <div id="main">
+    <%= yield :layout %>
+    <% if flash[:notice] %>
+      <div id="notice"><%= flash[:notice] %></div>
+    <% end %>
+  </div>
+</body>
+</html>
