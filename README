@@ -2,6 +2,6 @@
 
 Pelit is a game collection application. It allows you to list your games and categorize them in multiple ways.
 
-This is a Ruby on Rails 2.3 project.
+This is a Ruby on Rails 2.3.8 project.
 
 The application was implemented as part of a university project course at the University of Helsinki.
